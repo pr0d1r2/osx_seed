@@ -1,7 +1,13 @@
 #!/bin/bash
 
+export PATH="~/.gem/ruby/2.0.0/bin:$PATH"
+
 if [ ! -f ~/.gem/ruby/2.0.0/bin/kitchenplan ]; then
   gem install --no-ri --no-rdoc --user-install kitchenplan || return $?
+fi
+
+if [ ! -f ~/.gem/ruby/2.0.0/bin/bundle ]; then
+  gem install --no-ri --no-rdoc --user-install bundler || return $?
 fi
 
 if [ -d /opt/kitchenplan ]; then
