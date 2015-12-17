@@ -1,5 +1,15 @@
 #!/bin/bash
 
+PID=`echo $$`
+case `ps -ax | grep "^$PID" | grep " /bin/bash "` in
+  "")
+    D_R=`cd \`dirname $0\` ; pwd -P`
+    echo "sudo -i -u `whoami` /bin/bash $D_R/setup.sh"
+    sudo -i -u `whoami` /bin/bash $D_R/setup.sh
+    exit $?
+    ;;
+esac
+
 export PATH="~/.gem/ruby/2.0.0/bin:$PATH"
 
 if [ ! -f ~/.gem/ruby/2.0.0/bin/kitchenplan ]; then
